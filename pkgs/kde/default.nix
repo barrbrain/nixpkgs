@@ -3,7 +3,6 @@
   generateSplicesForMkScope,
   makeScopeWithSplicing',
   fetchurl,
-  fetchFromGitLab,
   libsForQt5,
   qt6Packages,
   cmark,
@@ -56,25 +55,29 @@
       plasma-wayland-protocols = libsForQt5.plasma-wayland-protocols;
 
       selenium-webdriver-at-spi = null; # Used for integration tests that we don't run, stub
-      # Not ported to Qt6 yet
-      kdevelop-pg-qt = null;
-      okteta = null;
-      libmediawiki = null;
 
       alpaka = self.callPackage ./misc/alpaka {};
       kdiagram = self.callPackage ./misc/kdiagram {};
+      kdevelop-pg-qt = self.callPackage ./misc/kdevelop-pg-qt {};
       kdsoap-ws-discovery-client = self.callPackage ./misc/kdsoap-ws-discovery-client {};
       kirigami-addons = self.callPackage ./misc/kirigami-addons {};
+      kio-extras-kf5 = self.callPackage ./misc/kio-extras-kf5 {};
       kio-fuse = self.callPackage ./misc/kio-fuse {};
       ktextaddons = self.callPackage ./misc/ktextaddons {};
       kunifiedpush = self.callPackage ./misc/kunifiedpush {};
-      kweathercore = self.callPackage ./misc/kweathercore {};
+      kup = self.callPackage ./misc/kup {};
+      marknote = self.callPackage ./misc/marknote {};
       mpvqt = self.callPackage ./misc/mpvqt {};
       oxygen-icons = self.callPackage ./misc/oxygen-icons {};
       phonon = self.callPackage ./misc/phonon {};
       phonon-vlc = self.callPackage ./misc/phonon-vlc {};
       polkit-qt-1 = self.callPackage ./misc/polkit-qt-1 {};
       pulseaudio-qt = self.callPackage ./misc/pulseaudio-qt {};
+
+      applet-window-buttons6 = self.callPackage ./third-party/applet-window-buttons6 {};
+      karousel = self.callPackage ./third-party/karousel {};
+      krohnkite = self.callPackage ./third-party/krohnkite {};
+      kzones = self.callPackage ./third-party/kzones {};
     }
   );
 in
