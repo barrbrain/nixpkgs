@@ -111,7 +111,11 @@
             "linker" = "${stdenv.cc}/bin/${stdenv.cc.targetPrefix}cc"
             "rustflags" = [ "-C", "target-feature=${
               if pkgsTargetTarget.stdenv.targetPlatform.isStatic then "+" else "-"
-            }crt-static" ]
+            }crt-static"${
+            lib.optionalString (pkgsTargetTarget.stdenv.targetPlatform ? gcc.arch) '',
+              "-C", "target-cpu=${pkgsTargetTarget.stdenv.targetPlatform.gcc.arch}"
+            ''
+            } ]
           '';
       };
       passthru.tests = {
