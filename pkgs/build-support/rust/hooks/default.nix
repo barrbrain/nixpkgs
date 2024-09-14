@@ -92,6 +92,7 @@
                 ''"-Ctarget-feature=${if stdenv.targetPlatform.isStatic then "+" else "-"}crt-static"''
               ]
               ++ lib.optional (!stdenv.targetPlatform.isx86_32) ''"-Cforce-frame-pointers=yes"''
+              ++ lib.optional (pkgsTargetTarget.stdenv.targetPlatform ? gcc.arch) ''"-Ctarget-cpu=${pkgsTargetTarget.stdenv.targetPlatform.gcc.arch}"''
             )
           } ]
         ''
