@@ -71,7 +71,12 @@
             [target."${stdenv.hostPlatform.rust.rustcTarget}"]
             "linker" = "${rust.envVars.linkerForHost}"
           ''}
-          "rustflags" = [ "-C", "target-feature=${if stdenv.hostPlatform.isStatic then "+" else "-"}crt-static" ]
+          "rustflags" = [
+            "-C", "target-feature=${if stdenv.hostPlatform.isStatic then "+" else "-"}crt-static"${
+          lib.optionalString (stdenv.targetPlatform ? gcc.arch) '',
+            "-C", "target-cpu=${stdenv.targetPlatform.gcc.arch}"
+          ''}
+          ]
         '';
       };
     } ./cargo-setup-hook.sh) {};
