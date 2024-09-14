@@ -86,7 +86,11 @@
           ''}
           "rustflags" = [ "-C", "target-feature=${
             if stdenv.hostPlatform.isStatic then "+" else "-"
-          }crt-static" ]
+          }crt-static"${
+          lib.optionalString (stdenv.targetPlatform ? gcc.arch) '',
+            "-C", "target-cpu=${stdenv.targetPlatform.gcc.arch}"
+          ''
+          } ]
         '';
       };
     } ./cargo-setup-hook.sh
