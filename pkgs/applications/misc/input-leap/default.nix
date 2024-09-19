@@ -28,19 +28,19 @@
 
 stdenv.mkDerivation rec {
   pname = "input-leap";
-  version = "unstable-2024-08-01";
+  version = "unstable-2024-09-12";
 
   src = fetchFromGitHub {
     owner = "input-leap";
     repo = "input-leap";
-    rev = "3a95e113435c6433d2f718ee55a4f688ec1ff893";
-    hash = "sha256-g6Eufl/xQ5y1qXbqfmO4ziQN+cH2bw+3ky+BQPsPGL8=";
+    rev = "5fbf52bfa84069b316dbd63070a36f292ad30199";
+    hash = "sha256-SHXsBPIw1CBS3yipRyH0Ac08yVhXZs3PCAFc88yFS88=";
     fetchSubmodules = true;
   };
 
   nativeBuildInputs = [ pkg-config cmake wrapGAppsHook3 qttools wrapQtAppsHook];
   buildInputs = [
-    curl qtbase avahi qt5compat
+    curl qtbase avahi
     libX11 libXext libXtst libXinerama libXrandr libXdmcp libICE libSM
   ] ++ lib.optionals withLibei [ libei libportal-qt6 ];
 
