@@ -1,7 +1,7 @@
 { lib, stdenv, removeReferencesTo, pkgsBuildBuild, pkgsBuildHost, pkgsBuildTarget, targetPackages
 , llvmShared, llvmSharedForBuild, llvmSharedForHost, llvmSharedForTarget, llvmPackages
 , fetchurl, file, python3
-, darwin, cargo, cmake, rustc, rustfmt
+, darwin, cargo, cmake, ninja, rustc, rustfmt
 , pkg-config, openssl, xz
 , libiconv
 , which, libffi
@@ -214,10 +214,15 @@ in stdenv.mkDerivation (finalAttrs: {
   # use it for the normal build. This disables cmake in Nix.
   dontUseCmakeConfigure = true;
 
+  # rustc unfortunately needs ninja to compile lld but doesn't
+  # use it for the normal build. This disables ninja in Nix.
+  dontUseNinjaBuild = true;
+  dontUseNinjaInstall = true;
+
   depsBuildBuild = [ pkgsBuildHost.stdenv.cc pkg-config ];
 
   nativeBuildInputs = [
-    file python3 rustc cmake
+    file python3 rustc cmake ninja
     which libffi removeReferencesTo pkg-config xz
   ]
     ++ optionals fastCross [ lndir makeWrapper ];
