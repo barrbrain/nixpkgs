@@ -17,7 +17,7 @@
   libXrandr,
   libXtst,
   libei,
-  libportal,
+  libportal-qt6,
   openssl,
   pkg-config,
   qtbase,
@@ -61,7 +61,7 @@ stdenv.mkDerivation rec {
     ]
     ++ lib.optionals withLibei [
       libei
-      libportal
+      libportal-qt6
     ];
 
   cmakeFlags = [
