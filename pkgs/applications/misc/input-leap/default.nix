@@ -16,7 +16,7 @@
 , libXrandr
 , libXtst
 , libei
-, libportal
+, libportal-qt6
 , openssl
 , pkg-config
 , qtbase
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     curl qtbase avahi
     libX11 libXext libXtst libXinerama libXrandr libXdmcp libICE libSM
-  ] ++ lib.optionals withLibei [ libei libportal ];
+  ] ++ lib.optionals withLibei [ libei libportal-qt6 ];
 
   cmakeFlags = [
     "-DINPUTLEAP_REVISION=${builtins.substring 0 8 src.rev}"
