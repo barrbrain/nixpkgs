@@ -13,7 +13,7 @@
   libxrandr,
   libxtst,
   libei,
-  libportal,
+  libportal-qt6,
   openssl,
   pkgsStatic,
   pkg-config,
@@ -60,7 +60,7 @@ stdenv.mkDerivation (finalAttrs: {
   ]
   ++ lib.optionals withLibei [
     libei
-    libportal
+    libportal-qt6
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     pkgsStatic.openssl
