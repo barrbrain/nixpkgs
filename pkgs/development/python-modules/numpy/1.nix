@@ -159,6 +159,9 @@ buildPythonPackage rec {
       # Tries to import numpy.distutils.msvccompiler, removed in setuptools 74.0
       "test_api_importable"
     ]
+    ++ lib.optionals (stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
+      "test_validate_transcendentals"
+    ]
     ++ lib.optionals stdenv.hostPlatform.isi686 [
       "test_new_policy" # AssertionError: assert False
       "test_identityless_reduction_huge_array" # ValueError: Maximum allowed dimension exceeded
