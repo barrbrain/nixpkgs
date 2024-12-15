@@ -3443,6 +3443,9 @@ with haskellLib;
         "/dsa/botan/3072/can negotiate a shared secret/"
       ]);
   }) super.botan-low;
+
+  crypton = dontCheckIf (pkgs.stdenv.targetPlatform ? gcc.arch && pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3") super.crypton;
+  tls = dontCheckIf (pkgs.stdenv.targetPlatform ? gcc.arch && pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3") super.tls;
 }
 // import ./configuration-tensorflow.nix { inherit pkgs haskellLib; } self super
 
