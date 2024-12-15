@@ -3372,5 +3372,8 @@ self: super:
       '';
   }) super.quickcheck-state-machine;
 
+  crypton = dontCheckIf (pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3") super.crypton;
+  tls = dontCheckIf (pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3") super.tls;
+
 }
 // import ./configuration-tensorflow.nix { inherit pkgs haskellLib; } self super
