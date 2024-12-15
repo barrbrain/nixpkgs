@@ -3246,6 +3246,9 @@ self: super:
 
   # 2025-5-15: Too strict bounds on base <4.19, see: https://github.com/zachjs/sv2v/issues/317
   sv2v = doJailbreak super.sv2v;
+
+  crypton = dontCheckIf (pkgs.stdenv.targetPlatform ? gcc.arch && pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3") super.crypton;
+  tls = dontCheckIf (pkgs.stdenv.targetPlatform ? gcc.arch && pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3") super.tls;
 }
 // import ./configuration-tensorflow.nix { inherit pkgs haskellLib; } self super
 
