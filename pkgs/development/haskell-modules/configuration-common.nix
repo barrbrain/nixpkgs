@@ -2081,6 +2081,7 @@ with haskellLib;
   # https://github.com/kazu-yamamoto/crypton/issues/49
   crypton = dontCheckIf (
     pkgs.stdenv.hostPlatform.isPower64 && pkgs.stdenv.hostPlatform.isBigEndian
+    || (pkgs.stdenv.targetPlatform ? gcc.arch && pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3")
   ) super.crypton;
 
   # Test failures on at least ppc64
@@ -2102,6 +2103,7 @@ with haskellLib;
   # exception: HandshakeFailed (Error_Protocol "bad PubKeyALG_Ed448 signature for ecdhparams" DecryptError)
   tls = dontCheckIf (
     pkgs.stdenv.hostPlatform.isPower64 && pkgs.stdenv.hostPlatform.isBigEndian
+    || (pkgs.stdenv.targetPlatform ? gcc.arch && pkgs.stdenv.targetPlatform.gcc.arch == "x86-64-v3")
   ) super.tls;
 
   # Too strict bounds on text and tls
