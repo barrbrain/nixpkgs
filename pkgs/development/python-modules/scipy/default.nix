@@ -157,6 +157,9 @@ buildPythonPackage {
     "hyp2f1_test_case3"
     "test_uint64_max"
     "test_large_m4" # https://github.com/scipy/scipy/issues/22466
+  ]
+  ++ lib.optionals (stdenv.targetPlatform ? gcc.arch && stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
+    "hyp2f1_test_case42"
   ];
 
   doCheck = !(stdenv.hostPlatform.isx86_64 && stdenv.hostPlatform.isDarwin);
