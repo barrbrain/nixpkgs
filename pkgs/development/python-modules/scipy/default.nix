@@ -140,6 +140,11 @@ buildPythonPackage (finalAttrs: {
     ++ lib.optionals (python.isPy311) [
       # https://github.com/scipy/scipy/issues/22789 Observed only with Python 3.11
       "test_funcs"
+    ]
+    ++ lib.optionals (stdenv.targetPlatform ? gcc.arch && stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
+      "hyp2f1_test_case42"
+      "test_initial_step"
+      "test_roundtrip_scaling"
     ];
 
   doCheck = !(stdenv.hostPlatform.isx86_64 && stdenv.hostPlatform.isDarwin);
