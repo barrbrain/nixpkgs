@@ -144,7 +144,7 @@ buildPythonPackage rec {
       # Tries to import numpy.distutils.msvccompiler, removed in setuptools 74.0
       "test_api_importable"
     ]
-    ++ lib.optionals (stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
+    ++ lib.optionals (stdenv.targetPlatform ? gcc.arch && stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
       "test_validate_transcendentals"
     ]
     ++ lib.optionals (pythonAtLeast "3.13") [

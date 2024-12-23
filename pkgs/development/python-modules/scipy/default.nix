@@ -149,7 +149,7 @@ buildPythonPackage {
     "hyp2f1_test_case3"
     "test_uint64_max"
   ]
-  ++ lib.optionals (stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
+  ++ lib.optionals (stdenv.targetPlatform ? gcc.arch && stdenv.targetPlatform.gcc.arch == "x86-64-v3") [
     "hyp2f1_test_case42"
   ];
 
