@@ -135,6 +135,9 @@ qtModule {
       patchShebangs .
     )
 
+    substituteInPlace cmake/QtConfigureHelpers.cmake \
+      --replace "/bin/bash" "${buildPackages.bash}/bin/bash"
+
     substituteInPlace cmake/Functions.cmake \
       --replace "/bin/bash" "${buildPackages.bash}/bin/bash"
 
