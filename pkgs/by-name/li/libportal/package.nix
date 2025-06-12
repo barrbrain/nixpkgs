@@ -2,6 +2,7 @@
   stdenv,
   lib,
   fetchFromGitHub,
+  fetchpatch2,
   meson,
   ninja,
   pkg-config,
@@ -35,6 +36,11 @@ stdenv.mkDerivation rec {
     rev = version;
     sha256 = "sha256-CXI4rBr9wxLUX537d6SNNf8YFR/J6YdeROlFt3edeOU=";
   };
+
+  patches = [(fetchpatch2 {
+    url = "https://github.com/flatpak/libportal/commit/68bac10ad0c60379884618d78ca7f93d9bb55df8.diff?full_index=1";
+    hash = "sha256-TPIKKnZCcp/bmmsaNlDxAsKLTBe6BKPCTOutLjXPCHQ=";
+  })];
 
   depsBuildBuild = [
     pkg-config
