@@ -49,6 +49,8 @@ buildPythonPackage rec {
     "tests/test_inotify_buffer.py"
     # assert cap.out.splitlines(keepends=False).count('+++++ 0') == 2 != 3
     "tests/test_0_watchmedo.py::test_auto_restart_on_file_change_debounce"
+    # OSError: [Errno 24] Too many open files
+    "tests/test_inotify_c.py::test_select_fd"
   ]
   ++ lib.optionals (stdenv.hostPlatform.isDarwin) [
     # segfaults the testsuite
