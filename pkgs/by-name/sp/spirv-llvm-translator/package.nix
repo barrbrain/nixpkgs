@@ -17,7 +17,13 @@ let
 
   # ROCm, if actively updated will always be at the latest version
   branch =
-    if llvmMajor == "19" then
+    if llvmMajor == "20" then
+      {
+        version = "20.1.5";
+        rev = "v20.1.5";
+        hash = "sha256-GdlC/Vl61nTNdua2s+CW2YOvkSKK6MNOvBc/393iths=";
+      }
+    else if llvmMajor == "19" then
       {
         version = "19.1.0";
         rev = "dad1f0eaab8047a4f73c50ed5f3d1694b78aae97";
