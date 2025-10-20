@@ -7,28 +7,21 @@
   pkg-config,
   file,
   libuv,
-  raft-canonical,
+  lz4,
   sqlite,
   lxd-lts,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "dqlite";
-  version = "1.18.1";
+  version = "1.18.3-fixed";
 
   src = fetchFromGitHub {
     owner = "canonical";
     repo = "dqlite";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-7ou077ozbpH21PcvEEcprr4UYJ/X398Ph9dh5C3YyBQ=";
+    hash = "sha256-/x5ve/Kc6PThAuhwUDN/aef8ye5hd3TJXQqcqRJhJb8=";
   };
-
-  patches = [
-    (fetchpatch2 {
-      url = "https://github.com/canonical/dqlite/commit/be453628ce782167f6652c055e600908e2641da7.patch?full_index=1";
-      hash = "sha256-5DvZ1TW6QmE/heh/RjV395gSgwKM5XnqxqznfYQPC/Y=";
-    })
-  ];
 
   nativeBuildInputs = [
     autoreconfHook
@@ -37,7 +30,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
   buildInputs = [
     libuv
-    raft-canonical.dev
+    lz4
     sqlite
   ];
 
